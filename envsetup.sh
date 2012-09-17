@@ -1,26 +1,30 @@
 function hmm() {
 cat <<EOF
 Invoke ". build/envsetup.sh" from your shell to add the following functions to your environment:
-- lunch:     lunch <product_name>-<build_variant>
-- tapas:     tapas [<App1> <App2> ...] [arm|x86|mips|armv5|arm64|x86_64|mips64] [eng|userdebug|user]
-- croot:     Changes directory to the top of the tree.
-- m:         Makes from the top of the tree.
-- mm:        Builds all of the modules in the current directory, but not their dependencies.
-- mmm:       Builds all of the modules in the supplied directories, but not their dependencies.
-             To limit the modules being built use the syntax: mmm dir/:target1,target2.
-- mma:       Builds all of the modules in the current directory, and their dependencies.
-- mmma:      Builds all of the modules in the supplied directories, and their dependencies.
-- provision: Flash device with all required partitions. Options will be passed on to fastboot.
-- cgrep:     Greps on all local C/C++ files.
-- ggrep:     Greps on all local Gradle files.
-- jgrep:     Greps on all local Java files.
-- resgrep:   Greps on all local res/*.xml files.
-- mangrep:   Greps on all local AndroidManifest.xml files.
-- mgrep:     Greps on all local Makefiles files.
-- sepgrep:   Greps on all local sepolicy files.
-- sgrep:     Greps on all local source files.
-- godir:     Go to the directory containing a file.
+- lunch:        lunch <product_name>-<build_variant>
+- tapas:        tapas [<App1> <App2> ...] [arm|x86|mips|armv5|arm64|x86_64|mips64] [eng|userdebug|user]
+- croot:        Changes directory to the top of the tree.
+- m:            Makes from the top of the tree.
+- mm:           Builds all of the modules in the current directory, but not their dependencies.
+- mmm:          Builds all of the modules in the supplied directories, but not their dependencies.
+                To limit the modules being built use the syntax: mmm dir/:target1,target2.
+- mma:          Builds all of the modules in the current directory, and their dependencies.
+- mmma:         Builds all of the modules in the supplied directories, and their dependencies.
+- provision:    Flash device with all required partitions. Options will be passed on to fastboot.
+- cgrep:        Greps on all local C/C++ files.
+- ggrep:        Greps on all local Gradle files.
+- jgrep:        Greps on all local Java files.
+- resgrep:      Greps on all local res/*.xml files.
+- mangrep:      Greps on all local AndroidManifest.xml files.
+- mgrep:        Greps on all local Makefiles files.
+- sepgrep:      Greps on all local sepolicy files.
+- sgrep:        Greps on all local source files.
+- godir:        Go to the directory containing a file.
 - pushboot:	 Push a file from your OUT dir to your phone and reboots it, using absolute path.
+- mka:          Builds using SCHED_BATCH on all processors
+- reposync:     Parallel repo sync using ionice and SCHED_BATCH
+- repolastsync: Prints date and time of last repo sync.
+- aospremote:   Add git remote for matching AOSP repository.
 
 Environment options:
 - SANITIZE_HOST: Set to 'true' to use ASAN for all host modules. Note that
@@ -1663,6 +1667,28 @@ function bootanimation() {
     set_stuff_for_environment
     T=$(gettop)
     $T/vendor/extras/tools/bootanimation/bootanimation.sh $@
+}
+
+function aospremote()
+{
+    if ! git rev-parse --git-dir &> /dev/null
+    then
+        echo ".git directory not found. Please run this from the root directory of the Android repository you wish to set up."
+        return 1
+    fi
+    git remote rm aosp 2> /dev/null
+    local PROJECT=$(pwd -P | sed -e "s#$ANDROID_BUILD_TOP\/##; s#-caf.*##; s#\/default##")
+    # Google moved the repo location in Oreo
+    if [ $PROJECT = "build/make" ]
+    then
+        PROJECT="build"
+    fi
+    if (echo $PROJECT | grep -qv "^device")
+    then
+        local PFX="platform/"
+    fi
+    git remote add aosp https://android.googlesource.com/$PFX$PROJECT
+    echo "Remote 'aosp' created"
 }
 
 # Print colored exit condition
