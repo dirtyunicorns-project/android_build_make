@@ -1040,6 +1040,21 @@ def WriteVerifyPackage(input_zip, output_zip):
     vendor_tgt.ResetFileMap()
     vendor_diff = common.BlockDifference("vendor", vendor_tgt, src=None)
     vendor_diff.WriteStrictVerifyScript(script)
+  script.Print( " ");
+  script.Print( " ");
+  script.Print( "           ________    ___   _____ __  __  ");
+  script.Print( "          / ____/ /   /   | / ___// / / /  ");
+  script.Print( "         / /_  / /   / /| | \__ \/ /_/ /   ");
+  script.Print( "        / __/ / /___/ ___ |___/ / __  /    ");
+  script.Print( "       /_/   /_____/_/  |_/____/_/ /_/     ");
+  script.Print( "      __ __ __________  _   __________     ");
+  script.Print( "     / //_// ____/ __ \/ | / / ____/ /     ");
+  script.Print( "    / ,<  / __/ / /_/ /  |/ / __/ / /      ");
+  script.Print( "   / /| |/ /___/ _, _/ /|  / /___/ /___    ");
+  script.Print( "  /_/ |_/_____/_/ |_/_/ |_/_____/_____/    ");
+  script.Print( " ");
+  script.Print( " ");
+  script.Print( "Installing kernel...");
 
   # Device specific partitions, such as radio, bootloader and etc.
   device_specific.VerifyOTA_Assertions()
