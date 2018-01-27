@@ -63,6 +63,12 @@ PRODUCT_SYSTEM_SERVER_APPS += \
     InputDevices \
     KeyChain \
     Telecom \
+    
+# Themes
+PRODUCT_PACKAGES += \
+    IndigoTheme \
+    RedTheme \
+    SkyBlueTheme
 
 # The set of packages we want to force 'speed' compilation on.
 PRODUCT_DEXPREOPT_SPEED_APPS += \
