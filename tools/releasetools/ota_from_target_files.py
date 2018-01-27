@@ -489,6 +489,7 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   script.Print("\____/_/ /_/_/\___/\____/_/  /_/ /_/____/  ");
   script.Print("                                           ");  
   script.Print(" ")
+  script.Print("            By blinoff82@XDA               ");
 
   if GetBuildProp("ro.mod.version", OPTIONS.info_dict) is not None:
     buildid = GetBuildProp("ro.mod.version", OPTIONS.info_dict)
