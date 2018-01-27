@@ -579,31 +579,24 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
 
   script.Print( " ");
   script.Print( " ");
-  script.Print( "            ________    ___   _____ __  __   ");
-  script.Print( "           / ____/ /   /   | / ___// / / /   ");
-  script.Print( "          / /_  / /   / /| | \__ \/ /_/ /    ");
-  script.Print( "         / __/ / /___/ ___ |___/ / __  /     ");
-  script.Print( "        /_/   /_____/_/  |_/____/_/ /_/      ");
-  script.Print( "       __ __ __________  _   __________      ");
-  script.Print( "      / //_// ____/ __ \/ | / / ____/ /      ");
-  script.Print( "     / ,<  / __/ / /_/ /  |/ / __/ / /       ");
-  script.Print( "    / /| |/ /___/ _, _/ /|  / /___/ /___     ");
-  script.Print( "   /_/ |_/_____/_/ |_/_/ |_/_____/_____/     ");
-  script.Print(" =============================================");
-  script.Print( " ");
-  script.Print( " ");
-  
-  if GetBuildProp("ro.mod.version", OPTIONS.info_dict) is not None:
-    kernelid = GetBuildProp("cat ${OUT_DIR}/include/config/kernel.release", OPTIONS.info_dict)
-  script.Print(" =============================================");
-  script.Print(" Kernel Version    : %s"%(kernelid));          
-  script.Print(" =============================================");
+  script.Print( "           ________    ___   _____ __  __  ");
+  script.Print( "          / ____/ /   /   | / ___// / / /  ");
+  script.Print( "         / /_  / /   / /| | \__ \/ /_/ /   ");
+  script.Print( "        / __/ / /___/ ___ |___/ / __  /    ");
+  script.Print( "       /_/   /_____/_/  |_/____/_/ /_/     ");
+  script.Print( "      __ __ __________  _   __________     ");
+  script.Print( "     / //_// ____/ __ \/ | / / ____/ /     ");
+  script.Print( "    / ,<  / __/ / /_/ /  |/ / __/ / /      ");
+  script.Print( "   / /| |/ /___/ _, _/ /|  / /___/ /___    ");
+  script.Print( "  /_/ |_/_____/_/ |_/_/ |_/_____/_____/    ");
   script.Print( " ");
   script.Print( " ");
   script.Print( "Flashing Kernel...");
   script.Print( " ");
   script.Print( " ");
-  
+  script.Print( "Flashing Boot Image..");
+
+
   if OPTIONS.backuptool:
     script.ShowProgress(0.02, 10)
     if OPTIONS.block_based:
