@@ -1701,6 +1701,12 @@ function repopick() {
     $T/vendor/extras/tools/repopick.py $@
 }
 
+function bootanimation() {
+    set_stuff_for_environment
+    T=$(gettop)
+    $T/vendor/extras/tools/bootanimation/bootanimation.sh $@
+}
+
 # Print colored exit condition
 function pez {
     "$@"
