@@ -490,36 +490,6 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   script.Print("                                           ");  
   script.Print(" ")
   script.Print("            By blinoff82@XDA               ");
-
-  if GetBuildProp("ro.mod.version", OPTIONS.info_dict) is not None:
-    buildid = GetBuildProp("ro.mod.version", OPTIONS.info_dict)
-    androidver = GetBuildProp("ro.build.version.release", OPTIONS.info_dict)
-    buildtype = GetBuildProp("ro.build.type", OPTIONS.info_dict)
-    buildidn = GetBuildProp("ro.build.id", OPTIONS.info_dict)
-    buildday = GetBuildProp("ro.build.date", OPTIONS.info_dict)
-    securep = GetBuildProp("ro.build.version.security_patch", OPTIONS.info_dict)
-    buildhst = GetBuildProp("ro.build.host", OPTIONS.info_dict)
-    maintainer = GetBuildProp("ro.build.user", OPTIONS.info_dict)
-    device = GetBuildProp("ro.product.name", OPTIONS.info_dict)
-    codename = GetBuildProp("ro.vendor.product.device", OPTIONS.info_dict)
-    density = GetBuildProp("ro.sf.lcd_density", OPTIONS.info_dict)
-    script.Print(" =============================================");
-    script.Print(" ROM Version    : %s"%(buildid));          
-    script.Print("");
-    script.Print(" OS Version     : %s"%(androidver)); 
-    script.Print("");
-    script.Print(" Security Patch : %s"%(securep));  
-    script.Print("");
-    script.Print(" Build Date     : %s"%(buildday));
-    script.Print(" =============================================");
-    script.Print(" Maintainer     : %s"%(maintainer));
-    script.Print("");      
-    script.Print(" Build Host     : %s"%(buildhst));      
-    script.Print(" =============================================");
-    script.Print(" Device         : %s"%(device));           
-    script.Print("");
-    script.Print(" LCD Density    : %s"%(density));   
-    script.Print(" =============================================");
     
   script.AppendExtra("ifelse(is_mounted(\"/system\"), unmount(\"/system\"));")
   device_specific.FullOTA_InstallBegin()
