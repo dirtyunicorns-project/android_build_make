@@ -643,9 +643,10 @@ function lunch()
         selection=aosp_arm-eng
     elif (echo -n $answer | grep -q -e "^[0-9][0-9]*$")
     then
-        if [ $answer -le ${#LUNCH_MENU_CHOICES[@]} ]
+        local choices=($(TARGET_BUILD_APPS= LUNCH_MENU_CHOICES="${LUNCH_MENU_CHOICES[@]}" get_build_var COMMON_LUNCH_CHOICES))
+        if [ $answer -le ${#choices[@]} ]
         then
-            selection=${LUNCH_MENU_CHOICES[$(($answer-1))]}
+            selection=${choices[$(($answer-1))]}
         fi
     else
         selection=$answer
