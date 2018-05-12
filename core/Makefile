@@ -1312,7 +1312,7 @@ endef
 # $(1): output file
 define build-recoveryimage-target
   @echo "Generating Changelog"
-  $(hide) ./vendor/extras/tools/changelog.sh
+  $(hide) ./vendor/extras/tools/changelog
   $(hide) mv $(PRODUCT_OUT)/Changelog.txt $(PRODUCT_OUT)/$(TARGET_PRODUCT)-Changelog.txt
   $(if $(filter true,$(PRODUCTS.$(INTERNAL_PRODUCT).PRODUCT_SUPPORTS_VBOOT)), \
     $(hide) $(MKBOOTIMG) $(INTERNAL_RECOVERYIMAGE_ARGS) $(INTERNAL_MKBOOTIMG_VERSION_ARGS) $(BOARD_MKBOOTIMG_ARGS) --output $(1).unsigned, \
