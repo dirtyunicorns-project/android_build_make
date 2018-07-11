@@ -1468,8 +1468,9 @@ class BlockDifference(object):
   def WriteScript(self, script, output_zip, progress=None):
     if not self.src:
       # write the output unconditionally
-      script.Print(" ")
-      script.Print("Flashing Dirty Unicorns System files...")
+      script.Print("Flashing DU %s image..." % (self.partition,))
+    else:
+      script.Print("Flashing DU %s image..." % (self.partition,))
     if progress:
       script.ShowProgress(progress, 0)
     self._WriteUpdate(script, output_zip)
